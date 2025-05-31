@@ -1,7 +1,12 @@
+import { Provider } from "react-redux";
+import Body from "./components/Body";
+import appStore from "./utils/appStore";
 const App = () => {
   return (
     <div>
-      <h1 className="text-blue-500">Hi all we are going to build NETFLIXGPT</h1>
+      <Provider store={appStore}>
+        <Body />
+      </Provider>
     </div>
   );
 };
