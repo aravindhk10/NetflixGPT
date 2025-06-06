@@ -2,7 +2,7 @@ import React from "react";
 
 function Video_details({ movietitle, movieoverview }) {
   return (
-    <div className="w-full pl-10 aspect-video pt-65 absolute text-white bg-gradient-to-r from-black">
+    <div className="w-full pl-20 aspect-video pt-65 absolute text-white bg-gradient-to-r from-black">
       <h1 className="text-6xl font-bold">{movietitle}</h1>
       <p className="w-1/5 text-lg mt-2">{movieoverview}</p>
 
