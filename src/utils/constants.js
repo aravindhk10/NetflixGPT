@@ -21,3 +21,5 @@ export const lang = [
   { id: "hin", name: "Hindi" },
   { id: "mal", name: "Malayalam" },
 ];
+
+export const gemini_API_key = "AIzaSyBoF4HgEMX88esOmL-1PUh_ry0x0nxIra8";
