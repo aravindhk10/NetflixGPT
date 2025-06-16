@@ -5,7 +5,7 @@ import { addnowPlayingmovies } from "../utils/moviesSlice";
 
 const useNowPlaying = () => {
   const dispatch = useDispatch();
-  const select = useSelector((store) => store.movies.nowPlaying);
+  const selected = useSelector((store) => store.movies.nowPlayingmovies);
   const nowPlaying = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
@@ -17,9 +17,7 @@ const useNowPlaying = () => {
   };
 
   useEffect(() => {
-    if (!select) {
-      nowPlaying();
-    }
+    !selected && nowPlaying();
   }, []);
 };
 
