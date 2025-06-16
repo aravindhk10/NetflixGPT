@@ -8,8 +8,7 @@ export const MOVIE_options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNjIwM2Q1ZTBhMDE2NDhhMzg0MWQzM2Y0M2YzYjlkMyIsIm5iZiI6MTc0NTA5NzA5My40NzIsInN1YiI6IjY4MDQxMTg1NjVjMjNmMjU0ZWFjZjE2ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jsvLz86Cl7e0ENRFnoHJLTBdIJ333XLEgoFQ3MPlpas",
+    Authorization: "Bearer" + import.meta.env.VITE_TMDB_API_key,
   },
 };
 
@@ -22,4 +21,4 @@ export const lang = [
   { id: "mal", name: "Malayalam" },
 ];
 
-export const gemini_API_key = "AIzaSyBoF4HgEMX88esOmL-1PUh_ry0x0nxIra8";
+export const gemini_API_key = import.meta.env.VITE_gemini_API_key;

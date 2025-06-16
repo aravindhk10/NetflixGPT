@@ -1,4 +1,7 @@
 const MovieCards = ({ data }) => {
+  if (!data) {
+    return null;
+  }
   return (
     <img
       src={"https://image.tmdb.org/t/p/w500" + data}

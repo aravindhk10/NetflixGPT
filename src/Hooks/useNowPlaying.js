@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { MOVIE_options } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addnowPlayingmovies } from "../utils/moviesSlice";
 
 const useNowPlaying = () => {
   const dispatch = useDispatch();
+  const select = useSelector((store) => store.movies.nowPlaying);
   const nowPlaying = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
@@ -16,7 +17,9 @@ const useNowPlaying = () => {
   };
 
   useEffect(() => {
-    nowPlaying();
+    if (!select) {
+      nowPlaying();
+    }
   }, []);
 };
 

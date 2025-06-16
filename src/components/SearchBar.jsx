@@ -1,11 +1,25 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import languages from "../utils/languageConstants.js";
 import ai from "../utils/gemini.js";
+import { MOVIE_options } from "../utils/constants.js";
+import { addSearchResults } from "../utils/gptSlice.js";
 const SearchBar = () => {
   const selectLanguage = useSelector((store) => store.config.preferredLanguage);
   const searchText = useRef(null);
+  const dispatch = useDispatch();
   // console.log(selectLanguage);
+
+  const searchForMovies = async (movie) => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/movie?query=" +
+        movie +
+        "&include_adult=false&language=en-US&page=1",
+      MOVIE_options
+    );
+    const json = await data.json();
+    return json.results;
+  };
 
   const handleSearch = async () => {
     const response = await ai.models.generateContent({
@@ -17,7 +31,12 @@ const SearchBar = () => {
     });
     console.log(response.text);
     const movieResponse = response?.text.split(",");
-    console.log(movieResponse);
+    // console.log(movieResponse);
+    const searchResults = movieResponse.map((movie) => searchForMovies(movie));
+    const data = await Promise.all(searchResults);
+    dispatch(
+      addSearchResults({ movieNames: movieResponse, searchResults: data })
+    );
   };
 
   return (

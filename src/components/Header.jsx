@@ -5,7 +5,7 @@ import { auth } from "../utils/Firebase";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router";
 import { lang, LOGO, USER_LOGO } from "../utils/constants";
-import { togglinggpt } from "../utils/gptSlice";
+import { clearSearch, togglinggpt } from "../utils/gptSlice";
 import { addPreferredLanguage } from "../utils/configSlice";
 
 const Header = () => {
@@ -47,6 +47,7 @@ const Header = () => {
 
   const handleGptSearch = () => {
     dispatch(togglinggpt());
+    dispatch(clearSearch());
   };
 
   const preferredlanguagesetting = (e) => {
@@ -82,7 +83,7 @@ const Header = () => {
             onClick={() => handleGptSearch()}
             className="bg-red-600 text-black font-semibold text-lg px-2 rounded-md mr-5 cursor-pointer"
           >
-            {selecttogglegptbtn ? "Home" : "GPT Search"}
+            {selecttogglegptbtn ? "Home" : "AI Search"}
           </button>
 
           <img
